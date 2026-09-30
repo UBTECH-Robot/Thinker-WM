@@ -1,6 +1,6 @@
 <div align="center">
      
-
+<img src="assets/logo1.png" width="200" alt="Thinker-WM Logo">
 
 # Thinker-WM
 
@@ -15,7 +15,7 @@
 <a href="https://github.com/UBTECH-Robot/Thinker-WM/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Custom-green" alt="License"></a>
 </div>
 
-<img src="assets/logo1.png" width="200" alt="Thinker-WM Logo">
+
 
 Thinker-WM is a unified multimodal world model that jointly models and generates
 RGB, depth, and action through a shared intermediate Transformer backbone with
