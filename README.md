@@ -1,6 +1,6 @@
 <div align="center">
      
-<img src="assets/logo1.png" width="200" alt="Thinker-WM Logo">
+<img src="assets/logo1.png" width="100" alt="Thinker-WM Logo">
 
 # Thinker-WM
 
