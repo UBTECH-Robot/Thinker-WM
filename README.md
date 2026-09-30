@@ -9,9 +9,8 @@
 <!-- Replace the <your-org> repo/project links and the arXiv id below with the
      real addresses when publishing. -->
 
-<a href="https://github.com/<your-org>/thinkerwm"><img src="https://img.shields.io/badge/GitHub-Code-blue?logo=github" alt="GitHub"></a>
-<a href="https://huggingface.co/UBTECH-Robotics/Thinker-WM/tree/main"><img src="https://img.shields.io/badge/HuggingFace-Models-yellow?logo=huggingface" alt="HuggingFace"></a>
 <a href="https://thinkercosmos.ubtrobot.com/thinker-wm/"><img src="https://img.shields.io/badge/Project-Page-green" alt="Project Page"></a>
+<a href="https://huggingface.co/UBTECH-Robotics/Thinker-WM/tree/main"><img src="https://img.shields.io/badge/HuggingFace-Models-yellow?logo=huggingface" alt="HuggingFace"></a>
 <a href="https://arxiv.org/abs/2609.xxxxx"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv" alt="arXiv"></a>
 
 </div>
