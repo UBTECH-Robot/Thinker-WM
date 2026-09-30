@@ -1,8 +1,10 @@
 <div align="center">
      
-<img src="assets/logo1.png" width="100" alt="Thinker-WM Logo">
 
-# Thinker-WM
+
+<h1 align="center">
+  <img src="assets/thinker_logo.png" height="40" alt="Thinker"> -WM
+</h1>
 
 **Thinker Team, Ubtech**
 
