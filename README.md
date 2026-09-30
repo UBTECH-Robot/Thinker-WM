@@ -2,7 +2,7 @@
      
 <img src="assets/logo1.png" width="200" alt="Thinker-WM Logo">
 
-# Thinker-WM
+# Thinker-WM: A Unified World Model with Shared Multimodal Backbone for Embodied Intelligence
 
 **Thinker Team, Ubtech**
 
