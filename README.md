@@ -12,7 +12,7 @@
 <a href="https://thinkercosmos.ubtrobot.com/thinker-wm/"><img src="https://img.shields.io/badge/Project-Page-1E9BD7" alt="Project Page"></a>
 <a href="https://huggingface.co/UBTECH-Robotics/Thinker-WM/tree/main"><img src="https://img.shields.io/badge/HuggingFace-Models-yellow?logo=huggingface" alt="HuggingFace"></a>
 <a href="https://arxiv.org/abs/2609.xxxxx"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv" alt="arXiv"></a>
-<a href="https://github.com/UBTECH-Robot/Thinker-WM/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Custom-lightgrey" alt="License"></a>
+<a href="https://github.com/UBTECH-Robot/Thinker-WM/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Custom-green" alt="License"></a>
 </div>
 
 Thinker-WM is a unified multimodal world model that jointly models and generates
