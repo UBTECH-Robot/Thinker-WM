@@ -78,9 +78,9 @@ Thinker-WM is evaluated on embodied world-model benchmarks covering real-robot a
 | Qwen-RobotWorld |     0.9142 |     0.5660 |     0.3429 |     0.6708 |      0.0114 |     0.2079 |     0.8834 |     1.0000 |      4.60 |
 | **Thinker-WM**  | **0.8877** | **0.5638** | **0.3630** | **0.7102** |  **0.0117** | **0.2691** | **0.9020** | **0.9524** |  **4.66** |
 
-#### WorldOlympiad
+#### [WorldOlympiad](https://alibaba-damo-academy.github.io/WorldOlympiad/#leaderboard)
 
-**Robotics sub-leaderboard**
+**Robotics leaderboard**
 
 | Model              | Physical ↑ | 3D Cons. ↑ |    CLIP ↑ | Interact. ↑ |     All ↑ |
 | ------------------ | ---------: | ---------: | --------: | ----------: | --------: |
