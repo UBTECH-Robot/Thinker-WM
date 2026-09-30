@@ -1,0 +1,174 @@
+# ThinkerWM inference configuration example.
+# Paths can be relative (resolved relative to repo root). Dimensions/layer counts/normalization policy
+# structural parameters must match checkpoint (otherwise strict loading reports shape mismatch).
+
+# Per-robot action normalization statistics JSON; empty/omitted = identity normalization
+action_stats_path: model_weights/action_stats.json
+common:
+  action_dim: 26            # Default per-robot action dim (overridable by robot_names entries)
+  state_dim: 26
+  num_video_frames: 48      # Generated video frames (action steps = 48x6=288)
+  video_height: 480
+  video_width: 640
+  video_action_freq_ratio: 6
+  unified_action_dim: 20    # Unified action space capacity U
+model:
+  wan:
+    config_path: model_weights/wan              # Directory must contain config.json (structure only)
+    vae_path: model_weights/wan/Wan2.2_VAE.pth  # Not in checkpoint, must be provided separately
+    precision: bfloat16
+  vlm:
+    checkpoint_path: model_weights/qwen3_vl     # Only needs config/tokenizer (VLM weights in ckpt)
+  wm:
+    video_encoder_layer_num: 8
+    video_decoder_layer_num: 8
+    action_encoder_layer_num: 8
+    action_decoder_layer_num: 8
+    und_layer_num: 4
+    action_t_downsample: 6      # Per action token 6 steps (288 steps -> 48 tokens)
+    flow_shift: 6.0             # Video-side flow-matching sigma shift
+    action_flow_shift: 1.0      # Action-side sigma shift
+    action_norm_policy: gripper_hand_minmax
+    action_target_repr: relative_eef_rot6
+    max_und_tokens: 1000
+    enable_depth: true          # Depth third generation stream (requires ckpt with depth weights)
+    depth_detach_video_kv: false
+    depth_uni_clone_layers: 14
+    depth_z_near: 0.15          # Depth codec domain parameters (metric depth -> [0,1] grayscale)
+    depth_z_far: 4.0
+    depth_mode: log
+dataset:
+  robot_names:
+    # unified_dim_map: local dim -> unified space column (-1 = dropped dim); rotvec/quat dims
+    # taken over by unified_rot_groups converted to 6D.
+    agibot-a2-d:
+      action_dim: 26
+      unified_dim_map: [0, 1, 2, -1, -1, -1, 9, -1, -1, -1, -1, -1, -1,
+                        10, 11, 12, -1, -1, -1, 19, -1, -1, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5], repr: rotvec, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [16, 17, 18], repr: rotvec, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 4
+      aliases:
+      - agibot-a2-d
+      - agibot
+      - agibot_beta
+    agibot-beta-parallel-gripper:
+      action_dim: 14
+      unified_dim_map: [0, 1, 2, -1, -1, -1, 9,
+                        10, 11, 12, -1, -1, -1, 19]
+      unified_rot_groups:
+      - {local: [3, 4, 5], repr: rotvec, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [10, 11, 12], repr: rotvec, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 5
+      aliases:
+      - agibot-beta-parallel-gripper
+    agibot-beta-dexterous-hand:
+      action_dim: 24
+      unified_dim_map: [0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        10, 11, 12, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5], repr: rotvec, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [15, 16, 17], repr: rotvec, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 6
+      aliases:
+      - agibot-beta-dexterous-hand
+    egoverse-aria-bimanual:
+      action_dim: 14
+      unified_dim_map: [0, 1, 2, -1, -1, -1, -1,
+                        10, 11, 12, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5, 6], repr: quat, quat_order: wxyz, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [10, 11, 12, 13], repr: quat, quat_order: wxyz, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 8
+      aliases:
+      - egoverse-aria-bimanual
+    egoverse-aria-left-arm:
+      action_dim: 7
+      unified_dim_map: [0, 1, 2, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5, 6], repr: quat, quat_order: wxyz, cols: [3, 4, 5, 6, 7, 8]}
+      robot_token_index: 9
+      aliases:
+      - egoverse-aria-left-arm
+    egoverse-aria-right-arm:
+      action_dim: 7
+      unified_dim_map: [10, 11, 12, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5, 6], repr: quat, quat_order: wxyz, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 10
+      aliases:
+      - egoverse-aria-right-arm
+    egoverse-eva-bimanual:
+      action_dim: 16
+      unified_dim_map: [0, 1, 2, -1, -1, -1, -1, 9,
+                        10, 11, 12, -1, -1, -1, -1, 19]
+      unified_rot_groups:
+      - {local: [3, 4, 5, 6], repr: quat, quat_order: wxyz, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [11, 12, 13, 14], repr: quat, quat_order: wxyz, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 11
+      aliases:
+      - egoverse-eva-bimanual
+    egoverse-scale-bimanual:
+      action_dim: 14
+      unified_dim_map: [0, 1, 2, -1, -1, -1, -1,
+                        10, 11, 12, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5, 6], repr: quat, quat_order: wxyz, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [10, 11, 12, 13], repr: quat, quat_order: wxyz, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 12
+      aliases:
+      - egoverse-scale-bimanual
+    egoverse-mecka-freeform-bimanual:
+      action_dim: 14
+      unified_dim_map: [0, 1, 2, -1, -1, -1, -1,
+                        10, 11, 12, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [3, 4, 5, 6], repr: quat, quat_order: wxyz, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [10, 11, 12, 13], repr: quat, quat_order: wxyz, cols: [13, 14, 15, 16, 17, 18]}
+      robot_token_index: 13
+      aliases:
+      - egoverse-mecka-freeform-bimanual
+    openvid-null:
+      action_dim: 26
+      # Pure video source placeholder robot: all local dims dropped.
+      unified_dim_map: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+      robot_token_index: 14
+      aliases:
+      - openvid-null
+      - openvid
+    egoscale-orb-stereo-human:
+      action_dim: 24
+      # Human-observed hand proxy actions; head/validity dims dropped, invalid hand frames gated.
+      unified_dim_map: [-1, -1, -1, -1, -1, -1, -1, -1,
+                        0, 1, 2, -1, -1, -1, -1, -1,
+                        10, 11, 12, -1, -1, -1, -1, -1]
+      unified_rot_groups:
+      - {local: [11, 12, 13, 14], repr: quat, quat_order: xyzw, cols: [3, 4, 5, 6, 7, 8]}
+      - {local: [19, 20, 21, 22], repr: quat, quat_order: xyzw, cols: [13, 14, 15, 16, 17, 18]}
+      unified_validity_gates:
+      - {local: 15, cols: [0, 10]}    # Left-hand invalid frames mask left arm 10 columns
+      - {local: 23, cols: [10, 20]}   # Right-hand invalid frames mask right arm 10 columns
+      robot_token_index: 15
+      aliases:
+      - egoscale-orb-stereo-human
+    libero-panda:
+      action_dim: 7
+      # Panda 7-DOF arm (delta EEF, eef_relative: false).
+      unified_dim_map: [0, 1, 2, -1, -1, -1, 9]
+      unified_rot_groups:
+      - {local: [3, 4, 5], repr: rotvec, cols: [3, 4, 5, 6, 7, 8]}
+      eef_relative: false
+      robot_token_index: 7
+      aliases:
+      - libero-panda
+      - libero
+  # Unified action space semantic slot registry (every column must fall within some band).
+  unified_bands:
+    eef_left_pos: [0, 3]        # EEF delta pos (meters): left arm
+    eef_left_rot6: [3, 9]       # EEF relative pose 6D rotation: left arm
+    eef_left_gripper: [9, 10]   # EEF gripper opening [-1,1]: left
+    eef_right_pos: [10, 13]     # Right arm
+    eef_right_rot6: [13, 19]
+    eef_right_gripper: [19, 20]

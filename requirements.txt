@@ -1,0 +1,15 @@
+# ThinkerWM inference dependencies (Python 3.10+, CUDA GPU required)
+torch>=2.4
+transformers>=4.57        # Qwen3-VL (Qwen3VLForConditionalGeneration)
+diffusers>=0.30           # Wan DiT base class (ConfigMixin/ModelMixin)
+einops
+flash-attn>=2.6           # wan/modules/attention.py; pre-built wheel available if no compilation environment
+qwen-vl-utils             # VLM message preprocessing (process_vision_info)
+decord                    # Video reading (primary path; cv2 fallback)
+imageio                   # mp4 writing (macro_block_size=1)
+imageio-ffmpeg
+opencv-python             # Video read/write fallback
+PyYAML
+numpy
+Pillow
+safetensors               # Optional: .safetensors format Wan weights

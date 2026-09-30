@@ -1,0 +1,1 @@
+Task: Place the toast on the plate.Keep the first person view of the robot unchanged. Keep the first frame of this video the unchanged.
