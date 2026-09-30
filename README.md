@@ -192,6 +192,6 @@ If you find Thinker-WM useful, please cite:
 
 **Authors**: Peng Gao, Yiming Ma, Daqin Luo, Xiangming Xu
 
-**Project Leader**: Baiyu Pan
+**Project Lead**: Baiyu Pan
 
 **Advisors**: Jichao Jiao, Hailin Shi
