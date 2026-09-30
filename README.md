@@ -47,6 +47,83 @@ covering applications from simulation and planning to real-robot control. It
 ranks **1st** on three public benchmarks: **EWMBench**, **World Olympiad**, and
 **World Arena**.
 
+## Evaluation Results
+
+Thinker-WM is evaluated on embodied world-model benchmarks covering real-robot and simulated environments, together with controlled evaluations of action conditioning and geometric prediction.
+
+### Main Benchmarks
+
+| Benchmark         | Setting                     |     Metric | Thinker-WM |    Rank |
+| ----------------- | --------------------------- | ---------: | ---------: | ------: |
+| **EWMBench**      | Embodied world model        |  Overall ↑ |   **4.66** | **1st** |
+| **WorldOlympiad** | Robotics sub-leaderboard    |  Overall ↑ |  **0.739** | **1st** |
+| **WorldArena**    | Track-1, 12-metric protocol | EWMScore ↑ |  **71.73** | **1st** |
+
+### Detailed Results
+
+#### EWMBench
+
+| Model           |   SceneC ↑ |      HSD ↑ |      Dyn ↑ |     nDTW ↑ | Diversity ↑ |     BLEU ↑ |     CLIP ↑ |   Logics ↑ | Overall ↑ |
+| --------------- | ---------: | ---------: | ---------: | ---------: | ----------: | ---------: | ---------: | ---------: | --------: |
+| Veo3            |     0.8415 |     0.2130 |     0.1932 |     0.1613 |      0.0221 |     0.2139 |     0.8965 |     0.9474 |      3.49 |
+| Wan2.6          |     0.6712 |     0.2034 |     0.0900 |     0.1715 |      0.0502 |     0.1616 |     0.8743 |     1.0000 |      3.22 |
+| Kling26         |     0.8211 |     0.3272 |     0.1822 |     0.3423 |      0.0173 |     0.2591 |     0.9014 |     1.0000 |      3.85 |
+| LTX-2           |     0.7850 |     0.2076 |     0.1283 |     0.2443 |      0.0120 |     0.1425 |     0.8869 |     0.5000 |      3.01 |
+| Sora2           |     0.8526 |     0.2807 |     0.3494 |     0.2754 |      0.0314 |     0.2466 |     0.9100 |     0.9474 |      3.89 |
+| Cosmos          |     0.7963 |     0.2500 |     0.2052 |     0.2533 |      0.0803 |     0.1230 |     0.8458 |     0.7333 |      3.29 |
+| GigaWorld       |     0.8707 |     0.3050 |     0.0849 |     0.2783 |      0.0278 |     0.2048 |     0.8873 |     0.9000 |      3.56 |
+| LVP             |     0.8795 |     0.4248 |     0.0433 |     0.6226 |      0.0093 |     0.2179 |     0.8995 |     0.9524 |      4.05 |
+| Vidar           |     0.7341 |     0.1877 |     0.1520 |     0.1769 |      0.0653 |     0.1607 |     0.8821 |     0.9411 |      3.30 |
+| WoW             |     0.8866 |     0.2494 |     0.0529 |     0.2566 |      0.0266 |     0.1932 |     0.9001 |     0.9524 |      3.52 |
+| Qwen-RobotWorld |     0.9142 |     0.5660 |     0.3429 |     0.6708 |      0.0114 |     0.2079 |     0.8834 |     1.0000 |      4.60 |
+| **Thinker-WM**  | **0.8877** | **0.5638** | **0.3630** | **0.7102** |  **0.0117** | **0.2691** | **0.9020** | **0.9524** |  **4.66** |
+
+#### WorldOlympiad
+
+**Robotics sub-leaderboard**
+
+| Model              | Physical ↑ | 3D Cons. ↑ |    CLIP ↑ | Interact. ↑ |     All ↑ |
+| ------------------ | ---------: | ---------: | --------: | ----------: | --------: |
+| Uranus             |      0.925 |      0.511 |     0.304 |       0.730 |     0.722 |
+| Cosmos-Predict-2.5 |      0.937 |      0.479 |     0.321 |       0.721 |     0.712 |
+| LingBot-World      |      0.949 |      0.393 |     0.314 |       0.710 |     0.684 |
+| Rolling Forcing    |      0.870 |      0.389 |     0.329 |       0.566 |     0.608 |
+| LongLive           |      0.857 |      0.472 |     0.327 |       0.470 |     0.600 |
+| Yume-1.5           |      0.851 |      0.288 |     0.312 |       0.624 |     0.588 |
+| WoW                |      0.787 |      0.272 |     0.288 |       0.447 |     0.502 |
+| **Thinker-WM**     |  **0.923** |  **0.531** | **0.305** |   **0.764** | **0.739** |
+
+#### WorldArena
+
+**Track-1, 12-metric evaluation protocol**
+
+| Model                     | 12-Metric EWMScore ↑ |
+| ------------------------- | -------------------: |
+| DexWorldEngine            |                71.01 |
+| BWM-Fast                  |                70.97 |
+| UNIS                      |                70.79 |
+| MotuBrain                 |                70.18 |
+| Wan2.6                    |                67.43 |
+| Cosmos-Predict2.5(Action) |                64.40 |
+| **Thinker-WM**            |            **71.73** |
+
+For the WorldArena Track-1 evaluation, the reported EWMScore is the unweighted mean of 12 metrics covering visual quality, content consistency, physics adherence, 3D accuracy, and controllability. Dynamic Degree, Flow Score, and Motion Smoothness are excluded because of their sensitivity to frame rate and temporal sampling density.
+
+### Additional Evaluations
+
+| Evaluation                                | Metric         |       Result |
+| ----------------------------------------- | -------------- | -----------: |
+| Action-conditioned generation on EWMBench | Overall ↑      |     **5.03** |
+| Action-conditioned generation on EWMBench | HSD ↑          |   **0.7369** |
+| Action-conditioned generation on EWMBench | nDTW ↑         |   **0.8736** |
+| Generated depth on AgiBot                 | AbsRel ↓       |   **0.1360** |
+| Generated depth on AgiBot                 | RMSE ↓         | **0.1790 m** |
+| Closed-loop control on RoboTwin           | Success Rate ↑ |    **75.0%** |
+| Motion Probe on held-out AgiBot windows   | Action MSE ↓   |    **0.116** |
+
+
+
+
 ## Installation
 
 - Python 3.10+
@@ -174,6 +251,9 @@ Overridable via CLI flags (or `pipe.infer(...)` kwargs):
   `1+num_video_frames` frames (first frame = conditioning frame).
 - Outputs: `video.mp4` (5 fps), `actions.npy` (`[action_chunk_size, action_dim]`),
   `depth.mp4` / `depth_m.npy`.
+
+
+
 
 ## Citation
 
