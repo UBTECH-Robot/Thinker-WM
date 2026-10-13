@@ -124,6 +124,77 @@ For the WorldArena Track-1 evaluation, the reported EWMScore is the unweighted m
 
 
 
+### RoboTwin: 50-Task Evaluation
+
+We evaluate Thinker-WM on 50 RoboTwin tasks under Clean and Randomized settings. Success rate (SR) is reported as a percentage; higher is better.
+
+| Model | Clean SR (%) ↑ | Randomized SR (%) ↑ |
+| :--- | ---: | ---: |
+| **Thinker-WM** | **92.6** | **91.4** |
+
+*Mean SR is the unweighted average across the 50 tasks. Randomization reduces mean SR by 1.2 percentage points.*
+
+<details>
+<summary><b>Per-task results — all 50 tasks</b></summary>
+
+Tasks are ordered by Clean SR (ascending), with ties following the supplied task order.
+
+| Task | Clean SR (%) ↑ | Randomized SR (%) ↑ |
+| :--- | ---: | ---: |
+| `hanging_mug` | 63 | 57 |
+| `open_microwave` | 65 | 60 |
+| `move_stapler_pad` | 72 | 67 |
+| `put_object_cabinet` | 76 | 72 |
+| `turn_switch` | 79 | 75 |
+| `handover_block` | 80 | 77 |
+| `place_can_basket` | 80 | 77 |
+| `beat_block_hammer` | 85 | 82 |
+| `place_dual_shoes` | 87 | 85 |
+| `blocks_ranking_size` | 89 | 87 |
+| `scan_object` | 89 | 88 |
+| `move_playingcard_away` | 90 | 88 |
+| `press_stapler` | 91 | 89 |
+| `place_bread_basket` | 92 | 91 |
+| `place_object_basket` | 92 | 91 |
+| `stack_bowls_three` | 92 | 91 |
+| `handover_mic` | 93 | 92 |
+| `pick_diverse_bottles` | 93 | 92 |
+| `place_mouse_pad` | 93 | 92 |
+| `blocks_ranking_rgb` | 94 | 93 |
+| `place_phone_stand` | 94 | 93 |
+| `dump_bin_bigbin` | 94 | 93 |
+| `put_bottles_dustbin` | 94 | 93 |
+| `stack_blocks_three` | 94 | 93 |
+| `place_a2b_right` | 95 | 94 |
+| `place_bread_skillet` | 95 | 94 |
+| `rotate_qrcode` | 96 | 95 |
+| `move_can_pot` | 97 | 96 |
+| `place_object_scale` | 97 | 96 |
+| `place_fan` | 97 | 97 |
+| `stack_bowls_two` | 97 | 97 |
+| `move_pillbottle_pad` | 98 | 98 |
+| `open_laptop` | 98 | 98 |
+| `place_a2b_left` | 98 | 98 |
+| `place_object_stand` | 98 | 97 |
+| `place_burger_fries` | 99 | 98 |
+| `adjust_bottle` | 99 | 99 |
+| `place_container_plate` | 99 | 99 |
+| `place_shoe` | 99 | 99 |
+| `shake_bottle` | 99 | 99 |
+| `stack_blocks_two` | 99 | 99 |
+| `stamp_seal` | 99 | 99 |
+| `click_alarmclock` | 100 | 100 |
+| `click_bell` | 100 | 100 |
+| `grab_roller` | 100 | 100 |
+| `lift_pot` | 100 | 100 |
+| `pick_dual_bottles` | 100 | 100 |
+| `place_cans_plasticbox` | 100 | 100 |
+| `place_empty_cup` | 100 | 100 |
+| `shake_bottle_horizontally` | 100 | 100 |
+| **Average (50 tasks)** | **92.6** | **91.4** |
+
+</details>
+
 ## Installation
 
 - Python 3.10+
@@ -269,7 +340,7 @@ If you find Thinker-WM useful, please cite:
 
 ## Contributors
 
-**Core Authors**: Chen Liao, Jiyuan Wang, Xiongwei Zhao
+**Core Authors**: Chen Liao, Jiyuan Wang, [Xiongwei Zhao](https://grandzxw.github.io/)
 
 **Authors**: Peng Gao, Yiming Ma, Daqin Luo, Xiangming Xu
 
