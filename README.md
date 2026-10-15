@@ -334,7 +334,10 @@ If you find Thinker-WM useful, please cite:
 @article{thinkerwm2026,
   title={Thinker-WM: A Unified World Model with Shared Multimodal Representations for Embodied Intelligence},
   author={Thinker Team, Ubtech},
-  year={2026}
+  year={2026},
+  eprint={2610.18447},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2610.18447}, 
 }
 ```
 
