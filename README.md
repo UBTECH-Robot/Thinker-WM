@@ -331,7 +331,7 @@ Overridable via CLI flags (or `pipe.infer(...)` kwargs):
 If you find Thinker-WM useful, please cite:
 
 ```bibtex
-@misc{thinkerwm2026,
+@article{thinkerwm2026,
   title={Thinker-WM: A Unified World Model with Shared Multimodal Representations for Embodied Intelligence},
   author={Thinker Team, Ubtech},
   journal={arXiv preprint},
